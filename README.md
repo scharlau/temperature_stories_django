@@ -50,9 +50,9 @@ We so this using the manage.py command tool by entering this command in the term
 
         python3 manage.py runserver
 
-If you're doing this on another platform, then you might need to use this instead:
+If you're doing this on another platform, then you might need to use this instead (change the port number from 8000 as required):
 
-        python3 manage.py runserver 0.0.0.0:8080 
+        python3 manage.py runserver 0.0.0.0:8000 
 
 If it went well, then you should see the python rocket launching your site. 
 
