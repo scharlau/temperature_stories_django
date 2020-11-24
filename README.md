@@ -56,7 +56,7 @@ If you're doing this on another platform, then you might need to use this instea
 
 If it went well, then you should see the python rocket launching your site. 
 
-## Creating some content
+## Creating the Story content
 
 Leave the server running. Open a new terminal and navigate as required to the same directory. We can now set about creating the space for our temperature stories by running this command:
 
@@ -132,9 +132,44 @@ Now create a blank index.html file and put this code into it. This is almost the
 
 We are now ready to run the changes to see the page load. Stories should now appear when you load the page on the site.
 
+## Adding in the temperature conversion
 
+We can add a form to the page so that we can add a temperature conversion that's added to the story. Weird, but it makes the exercise interesting.
 
+Open up views.py and add modify the index method so that it looks like this:
 
+        def index(request):
+                mystory = story()
+                converted_t = None
+                temp = None
+                if request.method== "POST":
+                        temp = int(request.POST.get('temp',''))
+                        converted_t = (temp-32)*0.5556
+                return render(request, 'temp_stories/index.html', {'story': mystory, 'converted_t': converted_t, 'temp': temp})
 
+This now accepts the variable 'temp' from the form and converts it to 'converted_t' to send back to the page for display.
 
+Open up index.html and modify the page to look like this:
 
+        <body>
+        <h1>Temperature Story Generator</h1>
+        <form action="/" method="post">
+        {% csrf_token %}
+        <p>Enter the temperature in fahrenheit to convert to celsius:</p>
+        <input type="number" name="temp">
+        <input type="submit" value="Convert">
+        </form>
+        <p>{{ story }}</p>
+        <p>Your converted temperature of {{ temp }} in F is {{ converted_t }} in C</p>
+        </body>
+
+Save the changes, and reload the pages to see it in action.
+
+## Do Some of your own changes
+
+We're now ready for you to modify the site to learn a bit more about how you use Django and understand the relationship between the components. This is mostly a quick intro without models and tables to show how you might use Django this way.
+
+You can take this further in three stages:
+1. Clean up the code in views.py by moving the temperature convertion to a separate method so that you can add the two temperatures to the story, and still display the 'conversion sentence' too.
+2. Separate out the temperature conversion as a new app in 'mysite' that is called 'convert' and has a form for converting temperatures from farhrenheit to celsius.
+3. Push the boundaries further to see what else you might do with Django.

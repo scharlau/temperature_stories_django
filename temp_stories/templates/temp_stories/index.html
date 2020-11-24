@@ -4,10 +4,17 @@
   <title>Temperature Story Generator</title>
 </head>
 <body>
- 
     <h1>Temperature Story Generator</h1>
+    <form action="/" method="post">
+        {% csrf_token %}
+        <p>Enter the temperature in fahrenheit to convert to celsius:</p>
+    <input type="number" name="temp">
+    <input type="submit" value="Convert">
+    </form>
     <p>
         {{ story }}
+    </p>
+    <p>Your converted temperature of {{ temp }} in F is {{ converted_t }} in C
     </p>
 </body>
 </html>
