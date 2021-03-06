@@ -88,25 +88,16 @@ In Django applications the logic goes into the 'views.py' file. Here we'll add e
         from django.shortcuts import render
 
         # Create your views here.
+        # use f-strings for easy string formatting https://realpython.com/python-f-strings/ 
 
         def story():
                 fake = Faker()
-                mystory =   "In a(n) " + fake.company()
-                mystory = mystory + " a young "
-                mystory = mystory + fake.language_name()
-                mystory = mystory + " stumbles across a(n) "
-                mystory = mystory + fake.domain_word()
-                mystory = mystory +  " which spurs him into conflict with " 
-                mystory = mystory + fake.name() 
-                mystory = mystory + " an " + fake.catch_phrase()
-                mystory = mystory + " with the help of a(n) "
-                mystory = mystory + fake.job()
-                mystory = mystory + " and her "
-                mystory = mystory + fake.file_name() 
-                mystory = mystory + " culminating in a struggle in "
-                mystory = mystory + fake.company()
-                mystory = mystory + " where someone shouts "
-                mystory = mystory + fake.bs()
+                mystory = (
+                    f"In a(n) {fake.company()} a young {fake.language_name()}" 
+                    f"stumbles across a(n) {fake.domain_word()} which spurs him into conflict with {fake.name() }"
+                    f"an {fake.catch_phrase()} with the help of a(n) {fake.job()} and her {fake.file_name()}"
+                    f" culminating in a struggle at {fake.company()} where someone shouts {fake.bs()}"
+                    )
                 return mystory
 
         def index(request):
