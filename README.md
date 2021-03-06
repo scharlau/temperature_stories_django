@@ -78,6 +78,15 @@ Third, we need to modify the settings.py file in the mysite app, so that it know
 
         'temp_stories.apps.TempStoriesConfig',
 
+Fourth, we need to tell temp_stories about the URLs it is using, so that they can be added to the list of URLs (pages) used by 'mysite'. We do that by creating the file urls.py in the 'temp_stories' folder. It should hold these details:
+
+        from django.urls import path
+        from . import views
+
+        urlpatterns = [
+            path('', views.index, name='index')
+        ]
+
 We can now start the logic for our application. Before we do that we need to add the Faker library to our application with the command:
 
         pip install faker
