@@ -76,7 +76,7 @@ Second, add this line (plus the , at the end of the line above it), to have djan
 
 Third, we need to modify the settings.py file in the mysite app, so that it knows to include the 'temp_stories' contents. We do this by adding a line in the section on 'INSTALLED_APPS'. Add this line to the end of the block ( plus the , at the end of the line above it).
 
-        'temp_stories.app.TempStoriesConfig',
+        'temp_stories.apps.TempStoriesConfig',
 
 We can now start the logic for our application. Before we do that we need to add the Faker library to our application with the command:
 
