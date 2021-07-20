@@ -1,7 +1,9 @@
 # Temperature Stories with Python Django
-A 'deliberate practice' exercise with python web framework Django that converts temperatures and generates stories. This example walks you through building a basic Django application without a database.
+This is a 'deliberate practice' exercise with the python web framework Django that converts temperatures and generates stories. This example walks you through building a basic Django application without a database. Instead, the focus is on displaying content, and using forms for interaction. 
 
-The goal of 'deliberate practice' is to think about how you'd solve this challenge, and to work at developing code to make this work. There is no single 'correct' version of this code. The purpose of the exercise it become familiar with different ways of making the application work. You should explore how this simple application is done in Rails so that you understand how variables in controllers are show up in the views you see in the browser.
+Django follows a model-view-controller architecture so that you can put code in a 'good' place for reuse. However, in Django the names are different. Models are models,  views in Django are controllers, and it uses templates as views. Remember this as we go forward and it will help to keep things clearer.
+
+The goal of 'deliberate practice' is to think about how you'd solve this challenge, and to work at developing code to make this work. There is no single 'correct' version of this code. The purpose of the exercise it become familiar with different ways of making the application work. You should explore how this simple application is done in Django so that you understand how variables in views show up in the templates you see in the browser.
 
 Under 'deliberate practice' we offer up the challenge, then think about options for developing a solution, and code for 12 minutes. After that we pause to discuss how people are approaching the problem, and what they're trying to do. This should be repeated three times and then wrapped up with time for people to express what they found most useful during the session. This should take an hour.
 
@@ -19,11 +21,11 @@ We will use Django (https://www.djangoproject.com) as our web framework for the 
     
 And that will install django version 3.1.3 (or pick a different version if there's something newer) with its associated dependencies. We can now start to build the application.
 
-Now we can start to create the site using the django admin tools. Issue this command, and don't forget the '.' at the end of the line, which says 'create it in this directory'. This will create the admin part of our application, which will sit alongside the actual site. 
+Now we can start to create the site using the django admin tools. Issue this command, and don't forget the '.' at the end of the line, which says 'create the project in this directory'. This will create the admin part of our application, which will sit alongside the actual site. 
 
         django-admin startproject mysite .
 
-We're using the name 'mysite' but you could use whatever seems appropriate. We'll save the temperature-stories' label for later in the app. For now we're setting up the support structure for the site, which will live in a separate folder.
+We're using the name 'mysite' but you could use whatever seems appropriate. We'll save the temperature-stories' label for later in the app. For now we're setting up the support structure for the site, which will live in a separate folder inside of this one.
 
 We need to specify some settings for the site, which we do in the mysite/settings.py file. Open this and add this line above the line for pathlib import Path:
 
@@ -37,7 +39,7 @@ Now go further up the file to 'ALLOWED_HOSTS' so that we can run this beyond 'lo
 
         ALLOWED_HOSTS = ['word-otherword.herokuapp.com', 'localhost']
 
-We now need to configure the database, which you saw was already detailed in the settings.py file. As django has a built-in admin tool, it already knows some of the tables that it needs to use. We can set this up with the command:
+Although we are not using a database for this application, django uses one in the background. We now need to configure this database, which you saw was already detailed in the settings.py file. As django has a built-in admin tool, it already knows some of the tables that it needs to use. We can set this up with the command:
 
         python3 manage.py migrate
 
@@ -46,7 +48,7 @@ If not, then look to the errors in the terminal. If you see one that says 'NameE
 
 ## Start the Server
 
-We so this using the manage.py command tool by entering this command in the terminal:
+We can now use the manage.py command tool to start the development server by entering this command in the terminal:
 
         python3 manage.py runserver
 
@@ -54,7 +56,7 @@ If you're doing this on another platform, then you might need to use this instea
 
         python3 manage.py runserver 0.0.0.0:8000 
 
-If it went well, then you should see the python rocket launching your site. 
+If it went well, then you should see the python rocket launching your site when you open the browser at the site. 
 
 ## Creating the Story content
 
@@ -87,7 +89,7 @@ Fourth, we need to tell temp_stories about the URLs it is using, so that they ca
             path('', views.index, name='index')
         ]
 
-We can now start the logic for our application. Before we do that we need to add the Faker library to our application with the command:
+We can now start the logic for our application. Before we do that we need to add the Faker library to our application. Faker will help us generate random stories. Add it with the command:
 
         pip install faker
 
@@ -132,9 +134,9 @@ Now create a blank index.html file and put this code into it. This is almost the
 
 We are now ready to run the changes to see the page load. Stories should now appear when you load the page on the site.
 
-## Adding in the temperature conversion
+## Adding in the temperature conversion form
 
-We can add a form to the page so that we can add a temperature conversion that's added to the story. Weird, but it makes the exercise interesting.
+We can add a form to the page so that we can add a temperature conversion that's added to the story. Weird, but it makes the exercise more interesting.
 
 Open up views.py and add modify the index method so that it looks like this:
 
@@ -167,7 +169,7 @@ Save the changes, and reload the pages to see it in action.
 
 ## Do Some of your own changes
 
-We're now ready for you to modify the site to learn a bit more about how you use Django and understand the relationship between the components. This is mostly a quick intro without models and tables to show how you might use Django this way.
+We're now ready for you to modify the site to learn a bit more about how you use Django and understand the relationship between the components. This is mostly a quick intro without models and tables to let you focus on the structure of a Django application.
 
 You can take this further in three stages:
 1. Clean up the code in views.py by moving the temperature convertion to a separate method so that you can add the two temperatures to the story, and still display the 'conversion sentence' too.
