@@ -1,8 +1,12 @@
 from django.test import Client, TestCase
 from django.urls import reverse
+from .views import convert
 
 # Create your tests here.
-class TemeratureTests(TestCase):
+class TemperatureTests(TestCase):
+
+    def test_convert(self):
+        self.assertEqual(100.008, convert(212))
 
     def test_temp_text(self):
         client = Client()
