@@ -10,16 +10,16 @@ Under 'deliberate practice' we offer up the challenge, then think about options 
 # First, create the basics
 Create a new project folder called 'temperature_stories' and then cd into the folder via the terminal and execute these commands:
 
-    pyenv local 3.7.0 # this sets the local version of python to 3.7.0
+    pyenv local 3.10.7 # this sets the local version of python to 3.10.7
     python3 -m venv .venv # this creates the virtual environment for you
     source .venv/bin/activate # this activates the virtual environment
     pip install --upgrade pip [ this is optional]  # this installs pip, and upgrades it if required.
 
 We will use Django (https://www.djangoproject.com) as our web framework for the application. We install that with 
         
-        pip install Django==3.1.3
+        pip install Django==4.1.2
     
-And that will install django version 3.1.3 (or pick a different version if there's something newer) with its associated dependencies. We can now start to build the application.
+And that will install django version 4.1.2 (or pick a different version if there's something newer) with its associated dependencies. We can now start to build the application.
 
 Now we can start to create the site using the django admin tools. Issue this command, and don't forget the '.' at the end of the line, which says 'create the project in this directory'. This will create the admin part of our application, which will sit alongside the actual site. 
 
@@ -64,7 +64,7 @@ Leave the server running. Open a new terminal and navigate as required to the sa
 
         python3 manage.py startapp temp_stories
 
-This will create a new folder fo us including space for database migrations, and other details specific to our content. By the way, we need to use an underscore to join the words in temp_stories as a hyphen is not allowed as part of an identifier.
+This will create a new folder for us including space for database migrations, and other details specific to our content. By the way, we need to use an underscore to join the words in temp_stories as a hyphen is not allowed as part of an identifier in django applications.
 
 Django needs to know the urls of the site so that it can serve up pages to visitors, and tell others that the page requested isn't part of the site. We do that by opening mysite/urls.py and adding a line for the pages that will be under temp_stories. 
 
@@ -89,7 +89,7 @@ Fourth, we need to tell temp_stories about the URLs it is using, so that they ca
             path('', views.index, name='index')
         ]
 
-We can now start the logic for our application. Before we do that we need to add the Faker library to our application. Faker will help us generate random stories. Add it with the command:
+We can now start the logic for our application. Before we do that we need to add the Faker library to our application from https://pypi.org/project/Faker/. Add it with the command:
 
         pip install faker
 
@@ -104,10 +104,10 @@ In Django applications the logic goes into the 'views.py' file. Here we'll add e
         def story():
                 fake = Faker()
                 mystory = (
-                    f"In a(n) {fake.company()} a young {fake.language_name()}" 
+                    f"In a(n) {fake.company()} a young {fake.language_name()} " 
                     f"stumbles across a(n) {fake.domain_word()} which spurs him into conflict with {fake.name() }"
                     f"an {fake.catch_phrase()} with the help of a(n) {fake.job()} and her {fake.file_name()}"
-                    f" culminating in a struggle at {fake.company()} where someone shouts {fake.bs()}"
+                    f" culminating in a struggle at {fake.company()} where someone shouts: '{fake.bs()}'"
                     )
                 return mystory
 
@@ -132,7 +132,7 @@ Now create a blank index.html file and put this code into it. This is almost the
         </p>
         </body></html>
 
-We are now ready to run the changes to see the page load. Stories should now appear when you load the page on the site.
+We are now ready to run the changes to see the page load. Stories should now appear when you load the page on the site. You can change the nouns, adjectives and other parts of mystory with values from Faker. Go to https://faker.readthedocs.io/en/stable/providers.html and look through the options for Standard Providers and make some changes to mystory
 
 ## Adding in the temperature conversion form
 

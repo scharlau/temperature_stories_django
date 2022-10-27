@@ -7,10 +7,10 @@ from django.shortcuts import render
 def story():
     fake = Faker()
     mystory = (
-        f"In a(n) {fake.company()} a young {fake.language_name()}" 
+        f"In a(n) {fake.company()} a young {fake.language_name()} " 
         f"stumbles across a(n) {fake.domain_word()} which spurs him into conflict with {fake.name() }"
         f"an {fake.catch_phrase()} with the help of a(n) {fake.job()} and her {fake.file_name()}"
-        f" culminating in a struggle at {fake.company()} where someone shouts {fake.bs()}"
+        f" culminating in a struggle at {fake.company()} where someone shouts: '{fake.bs()}'"
     )
     return mystory
 
