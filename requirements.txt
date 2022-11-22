@@ -2,6 +2,7 @@ altgraph==0.17.2
 attrs==22.1.0
 Django==4.1.2
 exceptiongroup==1.0.4
+faker==15.3.2
 future==0.18.2
 iniconfig==1.1.1
 macholib==1.15.2
