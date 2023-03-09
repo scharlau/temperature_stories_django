@@ -26,7 +26,7 @@ SECRET_KEY = 'g=3m&yu$z19$)0xe*2=t%)6s%o6n=+(gjfxs!6+qh4^xso8w!4'
 DEBUG = True
 
 ALLOWED_HOSTS = ['scharlau.pythonanywhere.com', 'localhost']
-CSRF_TRUSTED_ORIGINS =  ['scharlau.pythonanywhere.com', 'localhost']
+CSRF_TRUSTED_ORIGINS =  ['https://scharlau.pythonanywhere.com', 'localhost']
 
 # Application definition
 
