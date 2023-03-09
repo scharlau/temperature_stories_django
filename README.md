@@ -165,7 +165,11 @@ Open up index.html and modify the page to look like this:
         <p>Your converted temperature of {{ temp }} in F is {{ converted_t }} in C</p>
         </body>
 
-Save the changes, and reload the pages to see it in action.
+We need to add a line to the settings.py file that will tell Django that the csrf token used in our form is valid. Add this line below the Allowed hosts line:
+
+        CSRF_TRUSTED_ORIGINS =  ['https://scharlau.pythonanywhere.com', 'localhost']
+        
+Amend the server name to suit your system. Save the changes, and reload the pages to see it in action.
 
 ## Do Some of your own changes
 
